@@ -3,7 +3,7 @@ version: "3.7"
 services:
   web:
     image: shockwallet/api:latest
-    command: -c -h 0.0.0.0 -l ${LND_ADDR}
+    command: -c -h 0.0.0.0 -l ${LND_IP}:${LND_GRPC_PORT}
     restart: on-failure
     stop_grace_period: 1m
     ports:
@@ -24,7 +24,7 @@ services:
       # Uncomment to mount Bitcoin Core's data directory as
       # read-only inside the Docker container at path /bitcoin
       # - ${BITCOIN_DATA_DIR}:/bitcoin:ro
-    environment:
+    #environment:
       # Pass any environment variables to your app for configuration in the form:
       # VARIABLE_NAME: value
       #
@@ -41,7 +41,7 @@ services:
       # $BITCOIN_RPC_AUTH - RPC auth string
       #
       # LND environment variables
-      LND_ADDR: ${LND_IP}:${LND_GRPC_PORT}
+      #LND_ADDR: ${LND_IP}:${LND_GRPC_PORT}
       # $LND_REST_PORT - REST Port of LND
       #
       # Electrum server environment variables
