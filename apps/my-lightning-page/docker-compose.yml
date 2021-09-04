@@ -3,6 +3,7 @@ version: "3.7"
 services:
   web:
     image: shockwallet/api:latest
+    command: -c -h 0.0.0.0 -l ${LND_ADDR}
     restart: on-failure
     stop_grace_period: 1m
     ports:
@@ -40,8 +41,7 @@ services:
       # $BITCOIN_RPC_AUTH - RPC auth string
       #
       # LND environment variables
-      #$LND_IP
-      #$LND_GRPC_PORT
+      LND_ADDR: ${LND_IP}:${LND_GRPC_PORT}
       # $LND_REST_PORT - REST Port of LND
       #
       # Electrum server environment variables
