@@ -3,7 +3,7 @@ version: "3.7"
 services:
   web:
     image: shockwallet/api:latest
-    command: -c -h 0.0.0.0 -l ${LND_IP}:${LND_GRPC_PORT}
+    command: -c -h 0.0.0.0 -l ${LND_IP}:${LND_GRPC_PORT} -m /home/shocknet/.lnd/data/chain/bitcoin/mainnet/admin.macaroon -d /home/shocknet/.lnd/tls.cert
     restart: on-failure
     stop_grace_period: 1m
     ports:
