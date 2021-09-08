@@ -3,7 +3,7 @@ version: "3.7"
 services:
   web:
     image: shockwallet/api:latest
-    command: -c -h 0.0.0.0 -l ${LND_IP}:${LND_GRPC_PORT} -m /home/shocknet/.lnd/data/chain/bitcoin/mainnet/admin.macaroon -d /home/shocknet/.lnd/tls.cert
+    command: -c -h 0.0.0.0 -l ${LND_IP}:${LND_GRPC_PORT} 
     restart: on-failure
     stop_grace_period: 1m
     ports:
@@ -14,12 +14,12 @@ services:
     volumes:
       # Uncomment to mount your data directories inside
       # the Docker container for storing persistent data
-      - ${APP_DATA_DIR}/.storage:/home/shocknet/app/.storage:Z
-      - ${APP_DATA_DIR}/radata:/home/shocknet/app/radata:Z
+      - ${APP_DATA_DIR}/.storage:/app/.storage
+      - ${APP_DATA_DIR}/radata:/app/radata
 
       # Uncomment to mount LND's data directory as read-only
       # inside the Docker container at path /lnd
-      - ${LND_DATA_DIR}:/home/shocknet/.lnd:ro
+      - ${LND_DATA_DIR}:/root/.lnd:ro
 
       # Uncomment to mount Bitcoin Core's data directory as
       # read-only inside the Docker container at path /bitcoin
